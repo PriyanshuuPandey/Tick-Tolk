@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TickTolk</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary: #fe2c55;
+      --secondary: #25f4ee;
+      --dark: #121212;
+      --light: #ffffff;
+      --gray: #a8a8a8;
+      --bg: #000000;
+      --card-bg: #1e1e1e;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    
+    body {
+      background-color: var(--bg);
+      color: var(--light);
+      height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    
+    /* Header Styles */
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: var(--bg);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      padding: 8px 15px;
+      width: 40%;
+    }
+    
+    .search-bar input {
+      background: transparent;
+      border: none;
+      color: var(--light);
+      width: 100%;
+      outline: none;
+    }
+    
+    .nav-icons {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .nav-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+    
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-top: 60px;
+      margin-bottom: 60px;
+      overflow-y: auto;
+    }
+    
+    .video-feed {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .video-card {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 120px);
+      overflow: hidden;
+    }
+    
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Video Info Overlay */
+    .video-info {
+      position: absolute;
+      bottom: 80px;
+      left: 15px;
+      right: 15px;
+      z-index: 2;
+    }
+    
+    .video-user {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .video-user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--gray);
+      margin-right: 10px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .video-username {
+      font-weight: 600;
+      cursor: pointer;
+    }
+    
+    .video-caption {
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    
+    .video-stats {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .video-stat {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+    
+    /* Right Side Actions */
+    .side-actions {
+      position: absolute;
+      right: 15px;
+      bottom: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      z-index: 2;
+    }
+    
+    .action-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    .action-icon {
+      font-size: 24px;
+      margin-bottom: 5px;
+      transition: all 0.2s;
+    }
+    
+    .action-icon.liked {
+      color: var(--primary);
+      transform: scale(1.1);
+    }
+    
+    .action-count {
+      font-size: 12px;
+    }
+    
+    /* Creator Channel Access */
+    .creator-access {
+      position: absolute;
+      bottom: 20px;
+      left: 15px;
+      right: 15px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 2;
+    }
+    
+    .creator-text {
+      font-size: 14px;
+    }
+    
+    .subscribe-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 5px 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    
+    .subscribe-btn.subscribed {
+      background-color: var(--gray);
+    }
+    
+    /* Comment Section */
+    .comment-section {
+      position: absolute;
+      top: 0;
+      right: -400px;
+      width: 400px;
+      height: 100%;
+      background-color: var(--bg);
+      transition: transform 0.3s ease;
+      z-index: 10;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .comment-section.active {
+      transform: translateX(-400px);
+    }
+    
+    .comment-header {
+      padding: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .comment-close {
+      cursor: pointer;
+    }
+    
+    .comment-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 15px;
+    }
+    
+    .comment-item {
+      display: flex;
+      margin-bottom: 15px;
+    }
+    
+    .comment-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--gray);
+      margin-right: 10px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .comment-content {
+      flex: 1;
+    }
+    
+    .comment-user {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .comment-text {
+      font-size: 14px;
+    }
+    
+    .comment-input {
+      padding: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      gap: 10px;
+    }
+    
+    .comment-input input {
+      flex: 1;
+      background-color: var(--card-bg);
+      border: none;
+      border-radius: 20px;
+      padding: 10px 15px;
+      color: white;
+      outline: none;
+    }
+    
+    .comment-send {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+    
+    /* Share Modal */
+    .share-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    
+    .share-modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .share-content {
+      background-color: var(--card-bg);
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      padding: 20px;
+    }
+    
+    .share-header {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .share-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+    
+    .share-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    .share-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+    
+    .share-close {
+      cursor: pointer;
+    }
+    
+    /* Bottom Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      background-color: var(--bg);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 1000;
+    }
+    
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 12px;
+    }
+    
+    .nav-item i {
+      font-size: 20px;
+      margin-bottom: 3px;
+    }
+    
+    .nav-item.active {
+      color: var(--primary);
+    }
+    
+    /* Animations */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    .pulse {
+      animation: pulse 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+
+    <main class="main-content">
+      <div class="video-feed">
+        <!-- Video 1 -->
+        <div class="video-card">
+          <div class="video-container">
+            <video src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" autoplay loop muted></video>
+            
+            <!-- Video Info -->
+            <div class="video-info">
+              <div class="video-user" onclick="openCreatorChannel('@procreator')">
+                <div class="video-user-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg')"></div>
+                <div class="video-username">@procreator</div>
+              </div>
+              <div class="video-caption">Check out this amazing trick! #viral #skills</div>
+              <div class="video-stats">
+              </div>
+            </div>
+            
+            <!-- Right Side Actions -->
+            <div class="side-actions">
+              <div class="action-item" onclick="likeVideo(this)">
+                <i class="fas fa-heart action-icon"></i>
+                <span class="action-count">24.5K</span>
+              </div>
+              <div class="action-item" onclick="openComments()">
+                <i class="fas fa-comment action-icon"></i>
+                <span class="action-count">1.2K</span>
+              </div>
+              <div class="action-item" onclick="openShareModal()">
+                <i class="fas fa-share action-icon"></i>
+                <span class="action-count">Share</span>
+              </div>
+              <div class="action-item">
+                <i class="fas fa-bookmark action-icon"></i>
+              </div>
+              <div class="action-item" onclick="openCreatorChannel('@procreator')">
+                <div class="video-user-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg'); width: 30px; height: 30px;"></div>
+              </div>
+            </div>
+            
+            <!-- Creator Access -->
+            <div class="creator-access">
+              <div class="creator-text">
+                Follow to @procreator for exclusive content
+              </div>
+              <button class="follow" onclick="toggleFollow(this)">follow</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Video 2 -->
+        <div class="video-card">
+          <div class="video-container">
+            <video src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" autoplay loop muted></video>
+            
+            <div class="video-info">
+              <div class="video-user" onclick="openCreatorChannel('@dancequeen')">
+                <div class="video-user-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg')"></div>
+                <div class="video-username">@dancequeen</div>
+              </div>
+              <div class="video-caption">New dance routine! #dance #viral</div>
+            
+            <div class="side-actions">
+              <div class="action-item" onclick="likeVideo(this)">
+                <i class="fas fa-heart action-icon"></i>
+                <span class="action-count">56.7K</span>
+              </div>
+              <div class="action-item" onclick="openComments()">
+                <i class="fas fa-comment action-icon"></i>
+                <span class="action-count">3.4K</span>
+              </div>
+              <div class="action-item" onclick="openShareModal()">
+                <i class="fas fa-share action-icon"></i>
+                <span class="action-count">Share</span>
+              </div>
+              <div class="action-item">
+                <i class="fas fa-bookmark action-icon"></i>
+              </div>
+              <div class="action-item" onclick="openCreatorChannel('@dancequeen')">
+                <div class="video-user-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg'); width: 30px; height: 30px;"></div>
+              </div>
+            </div>
+            
+            <div class="creator-access">
+              <div class="creator-text">
+                Join @dancequeen's premium channel
+              </div>
+              <button class="subscribe-btn" onclick="toggleSubscribe(this)">₹99/month</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <!-- Comment Section -->
+    <div class="comment-section" id="commentSection">
+      <div class="comment-header">
+        <h3>Comments (1.2K)</h3>
+        <i class="fas fa-times comment-close" onclick="closeComments()"></i>
+      </div>
+      <div class="comment-list">
+        <div class="comment-item">
+          <div class="comment-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/22.jpg')"></div>
+          <div class="comment-content">
+            <div class="comment-user">@user123</div>
+            <div class="comment-text">This is amazing! How did you learn this?</div>
+          </div>
+        </div>
+        <div class="comment-item">
+          <div class="comment-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/33.jpg')"></div>
+          <div class="comment-content">
+            <div class="comment-user">@fanboy</div>
+            <div class="comment-text">🔥🔥🔥</div>
+          </div>
+        </div>
+        <div class="comment-item">
+          <div class="comment-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/55.jpg')"></div>
+          <div class="comment-content">
+            <div class="comment-user">@superfan</div>
+            <div class="comment-text">I subscribed to your channel! Worth every penny!</div>
+          </div>
+        </div>
+      </div>
+      <div class="comment-input">
+        <input type="text" placeholder="Add a comment...">
+        <button class="comment-send"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+    
+    <!-- Share Modal -->
+    <div class="share-modal" id="shareModal">
+      <div class="share-content">
+        <div class="share-header">
+          <h3>Share this video</h3>
+          <i class="fas fa-times share-close" onclick="closeShareModal()"></i>
+        </div>
+        <div class="share-options">
+          <div class="share-option" onclick="shareVia('whatsapp')">
+            <div class="share-icon"><i class="fab fa-whatsapp" style="color: #25D366;"></i></div>
+            <span>WhatsApp</span>
+          </div>
+          <div class="share-option" onclick="shareVia('instagram')">
+            <div class="share-icon"><i class="fab fa-instagram" style="color: #E1306C;"></i></div>
+            <span>Instagram</span>
+          </div>
+          <div class="share-option" onclick="shareVia('facebook')">
+            <div class="share-icon"><i class="fab fa-facebook" style="color: #1877F2;"></i></div>
+            <span>Facebook</span>
+          </div>
+          <div class="share-option" onclick="shareVia('twitter')">
+            <div class="share-icon"><i class="fab fa-twitter" style="color: #1DA1F2;"></i></div>
+            <span>Twitter</span>
+          </div>
+          <div class="share-option" onclick="shareVia('copy')">
+            <div class="share-icon"><i class="fas fa-link"></i></div>
+            <span>Copy Link</span>
+          </div>
+          <div class="share-option" onclick="shareVia('message')">
+            <div class="share-icon"><i class="fas fa-sms"></i></div>
+            <span>Message</span>
+          </div>
+          <div class="share-option" onclick="shareVia('email')">
+            <div class="share-icon"><i class="fas fa-envelope"></i></div>
+            <span>Email</span>
+          </div>
+          <div class="share-option" onclick="shareVia('more')">
+            <div class="share-icon"><i class="fas fa-ellipsis-h"></i></div>
+            <span>More</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <nav class="bottom-nav">
+      <a href="home.html" class="nav-item active">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="discover.html" class="nav-item">
+        <i class="fas fa-compass"></i>
+        <span>Discover</span>
+      </a>
+      <a href="record.html" class="nav-item">
+        <i class="fas fa-plus-circle"></i>
+        <span>Record</span>
+      </a>
+      <a href="inbox.html" class="nav-item">
+        <i class="fas fa-inbox"></i>
+        <span>Inbox</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+      <a href="livestream.html" class="nav-item">
+        <i class="fas fa-stream"></i>
+        <span>Stream</span>
+      </a>
+    </nav>
+  </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

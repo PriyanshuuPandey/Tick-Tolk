@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Additional styles specific to creator profile */
+    .creator-badge {
+      background-color: var(--primary);
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      margin-left: 0.5rem;
+    }
+    
+    .creator-actions {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    
+    .creator-btn {
+      flex: 1;
+      padding: 0.6rem;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .primary-btn {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .secondary-btn {
+      background-color: var(--light-dark);
+      color: var(--light);
+    }
+    
+    .creator-tabs {
+      display: flex;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .creator-tab {
+      flex: 1;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      position: relative;
+    }
+    
+    .creator-tab.active {
+      font-weight: bold;
+    }
+    
+    .creator-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 25%;
+      right: 25%;
+      height: 2px;
+      background-color: var(--primary);
+    }
+    
+    .highlight-stories {
+      display: flex;
+      padding: 1rem;
+      gap: 1rem;
+      overflow-x: auto;
+    }
+    
+    .story-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 80px;
+    }
+    
+    .story-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--light-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    
+    .story-avatar::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+      z-index: -1;
+    }
+    
+    .story-label {
+      font-size: 0.7rem;
+      text-align: center;
+    }
+    
+    .analytics-card {
+      background-color: var(--light-dark);
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1rem;
+    }
+    
+    .analytics-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .analytics-title {
+      font-weight: bold;
+    }
+    
+    .time-filter {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+    
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .stat-card {
+      background-color: var(--dark);
+      border-radius: 8px;
+      padding: 0.8rem;
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0.3rem 0;
+    }
+    
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+    
+    .earnings-card {
+      background-color: var(--light-dark);
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1rem;
+    }
+    
+    .earnings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .earnings-title {
+      font-weight: bold;
+    }
+    
+    .earnings-amount {
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-align: center;
+      margin: 1rem 0;
+      color: var(--primary);
+    }
+    
+    .withdraw-btn {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: none;
+      background-color: var(--primary);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    
+    .gifts-received {
+      margin: 1rem;
+    }
+    
+    .gift-item {
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .gift-icon {
+      width: 40px;
+      height: 40px;
+      background-color: var(--light-dark);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .gift-details {
+      flex: 1;
+    }
+    
+    .gift-sender {
+      font-weight: bold;
+    }
+    
+    .gift-value {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+    
+    .gift-time {
+      font-size: 0.7rem;
+      color: var(--gray);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    
+    <main class="main-content">
+      <div class="profile-header">
+        <div class="profile-avatar"></div>
+        <div class="profile-stats">
+          <div class="profile-stat">
+            <div class="profile-stat-value">245</div>
+            <div class="profile-stat-label">Posts</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-value">12.5K</div>
+            <div class="profile-stat-label">Followers</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-value">345</div>
+            <div class="profile-stat-label">Following</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="profile-bio">
+        <div style="display:flex;align-items:center;">
+          <h3>@creativeusername</h3>
+          <span class="creator-badge">Creator</span>
+        </div>
+        <p>Digital content creator | Short videos specialist | Live streamer</p>
+        <p>📍 Mumbai, India</p>
+        
+        <div class="creator-actions">
+          <a href="edit-profile.html" class="creator-btn secondary-btn">
+            <i class="fas fa-editprofile"></i> Edit Profile
+          </a>
+          <button class="creator-btn primary-btn">
+            <i class="fas fa-broadcast-tower"></i> Go Live
+          </button>
+        </div>
+      </div>
+      
+      <div class="creator-tabs">
+        <div class="creator-tab active">
+          <i class="fas fa-chart-line"></i> Analytics
+        </div>
+        <div class="creator-tab">
+          <i class="fas fa-rupee-sign"></i> Earnings
+        </div>
+        <div class="creator-tab">
+          <i class="fas fa-gift"></i> Gifts
+        </div>
+      </div>
+      
+      <!-- Analytics Tab Content -->
+      <div id="analytics-tab">
+        <div class="analytics-card">
+          <div class="analytics-header">
+            <div class="analytics-title">Channel Analytics</div>
+            <div class="time-filter">Last 7 days <i class="fas fa-chevron-down"></i></div>
+          </div>
+          
+          <div class="analytics-grid">
+            <div class="stat-card">
+              <div class="stat-label">Views</div>
+              <div class="stat-value">24.5K</div>
+              <div class="stat-label" style="color:var(--primary);">↑ 12%</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">New Followers</div>
+              <div class="stat-value">1.2K</div>
+              <div class="stat-label" style="color:var(--primary);">↑ 8%</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Engagement Rate</div>
+              <div class="stat-value">7.8%</div>
+              <div class="stat-label" style="color:var(--primary);">↑ 2.3%</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Shares</div>
+              <div class="stat-value">856</div>
+              <div class="stat-label" style="color:#ff4757;">↓ 4%</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="analytics-card">
+          <div class="analytics-header">
+            <div class="analytics-title">Top Content</div>
+            <div class="time-filter">See All</div>
+          </div>
+          
+          <div style="margin-top:1rem;">
+            <div style="display:flex;margin-bottom:1rem;">
+              <div style="width:100px;height:60px;background-color:var(--dark);border-radius:8px;overflow:hidden;">
+                <img src="https://via.placeholder.com/100x60" alt="Video thumbnail" style="width:100%;height:100%;object-fit:cover;">
+              </div>
+              <div style="margin-left:1rem;flex:1;">
+                <div style="font-weight:bold;font-size:0.9rem;">My best video yet!</div>
+                <div style="display:flex;justify-content:space-between;margin-top:0.3rem;">
+                  <div style="font-size:0.8rem;color:var(--gray);">
+                    <i class="fas fa-eye"></i> 5.6K views
+                  </div>
+                  <div style="font-size:0.8rem;color:var(--gray);">
+                    <i class="fas fa-heart"></i> 1.2K
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div style="display:flex;margin-bottom:1rem;">
+              <div style="width:100px;height:60px;background-color:var(--dark);border-radius:8px;overflow:hidden;">
+                <img src="https://via.placeholder.com/100x60" alt="Video thumbnail" style="width:100%;height:100%;object-fit:cover;">
+              </div>
+              <div style="margin-left:1rem;flex:1;">
+                <div style="font-weight:bold;font-size:0.9rem;">Live stream highlights</div>
+                <div style="display:flex;justify-content:space-between;margin-top:0.3rem;">
+                  <div style="font-size:0.8rem;color:var(--gray);">
+                    <i class="fas fa-eye"></i> 4.2K views
+                  </div>
+                  <div style="font-size:0.8rem;color:var(--gray);">
+                    <i class="fas fa-heart"></i> 987
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Earnings Tab Content (Hidden by default) -->
+      <div id="earnings-tab" style="display:none;">
+        <div class="earnings-card">
+          <div class="earnings-header">
+            <div class="earnings-title">Total Earnings</div>
+            <div class="time-filter">This Month</div>
+          </div>
+          
+          <div class="earnings-amount">₹0</div>
+          
+          <div style="display:flex;justify-content:space-between;margin:1rem 0;">
+            <div style="text-align:center;">
+              <div style="font-size:0.8rem;color:var(--gray);">From superchats (From live-streaming)</div>
+              <div style="font-weight:bold;">₹0</div>
+            </div>
+          </div>
+          
+          <div style="display:flex;justify-content:space-between;margin:1rem 0;">
+            <div style="text-align:center;">
+              <div style="font-size:0.8rem;color:var(--gray);">From Views (After channel monetization)</div>
+              <div style="font-weight:bold;">₹0</div>
+            </div>
+          </div> 
+
+          <button class="withdraw-btn">
+            <i class="fas fa-rupee-sign"></i> Withdraw Earnings
+          </button>
+        </div>
+        
+        <div class="earnings-card">
+          <div class="earnings-header">
+            <div class="earnings-title">Withdrawal History</div>
+            <div class="time-filter">See All</div>
+          </div>
+          
+          <div style="margin-top:1rem;">
+            <div style="display:flex;justify-content:space-between;padding:0.8rem 0;border-bottom:1px solid rgba(255,255,255,0.1);">
+              <div>
+                <div style="font-weight:bold;">UPI Transfer</div>
+                <div style="font-size:0.8rem;color:var(--gray);">dd/mm/yy</div>
+              </div>
+              <div style="font-weight:bold;color:var(--primary);">₹0</div>
+            </div>
+            
+            <div style="display:flex;justify-content:space-between;padding:0.8rem 0;border-bottom:1px solid rgba(255,255,255,0.1);">
+              <div>
+                <div style="font-weight:bold;">Bank Transfer</div>
+                <div style="font-size:0.8rem;color:var(--gray);">dd/mm/yy</div>
+              </div>
+              <div style="font-weight:bold;color:var(--primary);">₹0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Gifts Tab Content (Hidden by default) -->
+      <div id="gifts-tab" style="display:none;">
+        <div class="gifts-received">
+          <div style="font-weight:bold;margin-bottom:1rem;">Recent Gifts</div>
+          
+          <div class="gift-item">
+            <div class="gift-icon" style="color:#ff6b81;">
+              <i class="fas fa-gem"></i>
+            </div>
+            <div class="gift-details">
+              <div class="gift-sender">@fan123</div>
+              <div class="gift-value">Diamond Gift (500 coins)</div>
+            </div>
+            <div class="gift-time">2h ago</div>
+          </div>
+          
+          <div class="gift-item">
+            <div class="gift-icon" style="color:#ffa502;">
+              <i class="fas fa-crown"></i>
+            </div>
+            <div class="gift-details">
+              <div class="gift-sender">@supporter</div>
+              <div class="gift-value">Golden Crown (250 coins)</div>
+            </div>
+            <div class="gift-time">5h ago</div>
+          </div>
+          
+          <div class="gift-item">
+            <div class="gift-icon" style="color:#70a1ff;">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="gift-details">
+              <div class="gift-sender">@loyalviewer</div>
+              <div class="gift-value">Super Star (100 coins)</div>
+            </div>
+            <div class="gift-time">1d ago</div>
+          </div>
+          
+          <div class="gift-item">
+            <div class="gift-icon" style="color:#2ed573;">
+              <i class="fas fa-heart"></i>
+            </div>
+            <div class="gift-details">
+              <div class="gift-sender">@newfan</div>
+              <div class="gift-value">Love Heart (50 coins)</div>
+            </div>
+            <div class="gift-time">2d ago</div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <nav class="bottom-nav">
+      <a href="home.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="discover.html" class="nav-item">
+        <i class="fas fa-compass"></i>
+        <span>Discover</span>
+      </a>
+      <a href="record.html" class="nav-item">
+        <i class="fas fa-plus-circle"></i>
+        <span>Record</span>
+      </a>
+      <a href="inbox.html" class="nav-item">
+        <i class="fas fa-inbox"></i>
+        <span>Inbox</span>
+      </a>
+      <a href="profile.html" class="nav-item active">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </div>
+
+  <script>
+    // Tab switching functionality
+    const tabs = document.querySelectorAll('.creator-tab');
+    const tabContents = {
+      'analytics-tab': document.getElementById('analytics-tab'),
+      'earnings-tab': document.getElementById('earnings-tab'),
+      'gifts-tab': document.getElementById('gifts-tab')
+    };
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs
+        tabs.forEach(t => t.classList.remove('active'));
+        // Add active class to clicked tab
+        tab.classList.add('active');
+        
+        // Hide all tab contents
+        Object.values(tabContents).forEach(content => {
+          content.style.display = 'none';
+        });
+        
+        // Show the selected tab content
+        if (tab.innerHTML.includes('Analytics')) {
+          tabContents['analytics-tab'].style.display = 'block';
+        } else if (tab.innerHTML.includes('Earnings')) {
+          tabContents['earnings-tab'].style.display = 'block';
+        } else if (tab.innerHTML.includes('Gifts')) {
+          tabContents['gifts-tab'].style.display = 'block';
+        }
+      });
+    });
+    
+    // Simulate going live
+    const goLiveBtn = document.querySelector('.primary-btn');
+    if (goLiveBtn) {
+      goLiveBtn.addEventListener('click', () => {
+        window.location.href = 'streaming.html?broadcast=true';
+      });
+    }
+  </script>
+</body>
+</html>

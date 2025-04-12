@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inbox</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/inbox.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="inbox-tabs">
+      <div class="tab active" data-tab="messages">
+          <span>Messages</span>
+          <div class="tab-indicator"></div>
+      </div>
+      <div class="tab" data-tab="notifications">
+          <span>Notifications</span>
+          <div class="tab-indicator"></div>
+      </div>
+      <div class="tab" data-tab="activity">
+          <span>Activity</span>
+          <div class="tab-indicator"></div>
+      </div>
+  </div>
+
+  <!-- Tab Content -->
+  <main class="inbox-content">
+    <!-- Messages Tab -->
+    <div class="tab-pane active" id="messages">
+          <!-- New Message Button -->
+          <div class="new-message-btn">
+              <i class="fas fa-edit"></i>
+              <span>New Message</span>
+          </div>
+
+          <!-- Message Threads -->
+          <div class="message-threads">
+              <!-- Thread 1 -->
+              <div class="thread unread">
+                  <div class="thread-left">
+                      <div class="user-avatar">
+                          <img src="https://via.placeholder.com/50" alt="User">
+                      </div>
+                      <div class="thread-info">
+                          <div class="thread-header">
+                              <span class="username">@tiktokuser1</span>
+                              <span class="time">2h ago</span>
+                          </div>
+                          <p class="preview">Hey! Check out my new video!</p>
+                      </div>
+                  </div>
+                  <div class="thread-right">
+                      <i class="fas fa-camera"></i>
+                  </div>
+              </div>
+
+              <!-- Thread 2 -->
+              <div class="thread">
+                  <div class="thread-left">
+                      <div class="user-avatar">
+                          <img src="https://via.placeholder.com/50" alt="User">
+                          <div class="online-status"></div>
+                      </div>
+                      <div class="thread-info">
+                          <div class="thread-header">
+                              <span class="username">@dancequeen</span>
+                              <span class="time">5h ago</span>
+                          </div>
+                          <p class="preview">Let's collab on this dance challenge!</p>
+                      </div>
+                  </div>
+                  <div class="thread-right">
+                      <div class="unread-count">3</div>
+                  </div>
+              </div>
+
+              <!-- Thread 3 -->
+              <div class="thread">
+                  <div class="thread-left">
+                      <div class="user-avatar">
+                          <img src="https://via.placeholder.com/50" alt="User">
+                      </div>
+                      <div class="thread-info">
+                          <div class="thread-header">
+                              <span class="username">@comedyking</span>
+                              <span class="time">1d ago</span>
+                          </div>
+                          <p class="preview">😂😂😂</p>
+                      </div>
+                  </div>
+                  <div class="thread-right">
+                      <i class="fas fa-laugh-squint"></i>
+                  </div>
+              </div>
+
+              <!-- Thread 4 -->
+              <div class="thread">
+                  <div class="thread-left">
+                      <div class="user-avatar">
+                          <img src="https://via.placeholder.com/50" alt="User">
+                      </div>
+                      <div class="thread-info">
+                          <div class="thread-header">
+                              <span class="username">TikTok Team</span>
+                              <span class="time">2d ago</span>
+                          </div>
+                          <p class="preview">Your video is getting popular! 100K views!</p>
+                      </div>
+                  </div>
+                  <div class="thread-right">
+                      <i class="fas fa-bell"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Notifications Tab -->
+      <div class="tab-pane" id="notifications">
+          <div class="notification-list">
+              <!-- Notification 1 -->
+              <div class="notification unread">
+                  <div class="notification-avatar">
+                      <img src="https://via.placeholder.com/40" alt="User">
+                  </div>
+                  <div class="notification-content">
+                      <p><strong>@user123</strong> liked your video</p>
+                      <span class="time">10m ago</span>
+                  </div>
+                  <div class="notification-preview">
+                      <img src="https://via.placeholder.com/50" alt="Video">
+                  </div>
+              </div>
+
+              <!-- Notification 2 -->
+              <div class="notification unread">
+                  <div class="notification-avatar">
+                      <img src="https://via.placeholder.com/40" alt="User">
+                  </div>
+                  <div class="notification-content">
+                      <p><strong>@dancer456</strong> started following you</p>
+                      <span class="time">25m ago</span>
+                  </div>
+                  <button class="follow-back">Follow back</button>
+              </div>
+
+              <!-- Notification 3 -->
+              <div class="notification">
+                  <div class="notification-avatar">
+                      <img src="https://via.placeholder.com/40" alt="User">
+                  </div>
+                  <div class="notification-content">
+                      <p><strong>@commenter789</strong> commented: "This is amazing! 🔥"</p>
+                      <span class="time">1h ago</span>
+                  </div>
+                  <div class="notification-preview">
+                      <img src="https://via.placeholder.com/50" alt="Video">
+                  </div>
+              </div>
+
+              <!-- Notification 4 -->
+              <div class="notification">
+                  <div class="notification-avatar">
+                      <img src="https://via.placeholder.com/40" alt="User">
+                  </div>
+                  <div class="notification-content">
+                      <p>Your vide<strong>"Summer Vibes"</strong> has 10,000 likes!</p>
+                      <span class="time">3h ago</span>
+                  </div>
+                  <div class="notification-preview">
+                      <img src="https://via.placeholder.com/50" alt="Video">
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Activity Tab -->
+      <div class="tab-pane" id="activity">
+          <div class="activity-list">
+              <!-- Activity 1 -->
+              <div class="activity">
+                  <div class="activity-icon">
+                      <i class="fas fa-heart"></i>
+                  </div>
+                  <div class="activity-content">
+                      <p><strong>@user123</strong> an <strong>45 others</strong> liked your video</p>
+                      <span class="time">Today</span>
+                  </div>
+                  <div class="activity-preview">
+                      <img src="https://via.placeholder.com/50" alt="Video">
+                  </div>
+              </div>
+
+              <!-- Activity 2 -->
+              <div class="activity">
+                  <div class="activity-icon">
+                      <i class="fas fa-user-plus"></i>
+                  </div>
+                  <div class="activity-content">
+                      <p><strong>@newfan1</strong> an <strong>12 others</strong> started following you</p>
+                      <span class="time">Today</span>
+                  </div>
+              </div>
+
+              <!-- Activity 3 -->
+              <div class="activity">
+                  <div class="activity-icon">
+                      <i class="fas fa-comment"></i>
+                  </div>
+                  <div class="activity-content">
+                      <p><strong>@commenter1</strong> an <strong>5 others</strong> commented on your video</p>
+                      <span class="time">Yesterday</span>
+                  </div>
+                  <div class="activity-preview">
+                      <img src="https://via.placeholder.com/50" alt="Video">
+                  </div>
+              </div>
+
+              <!-- Activity 4 -->
+              <div class="activity">
+                  <div class="activity-icon">
+                      <i class="fas fa-share"></i>
+                  </div>
+                  <div class="activity-content">
+                      <p>Your video was share <strong>128 times</strong></p>
+                      <span class="time">Yesterday</span>
+                  </div>
+                  <div class="activity-preview">
+                      <img src="https://via.placeholder.com/50" alt="Video">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+      <a href="home.html" class="nav-item">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+      </a>
+      <a href="discover.html" class="nav-item">
+          <i class="fas fa-compass"></i>
+          <span>Discover</span>
+      </a>
+      <a href="record.html" class="nav-item">
+          <i class="fas fa-plus-circle"></i>
+          <span>Record</span>
+      </a>
+      <a href="inbox.html" class="nav-item active">
+          <i class="fas fa-inbox"></i>
+          <span>Inbox</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+          <i class="fas fa-user"></i>
+          <span>Me</span>
+      </a>
+  </nav>
+</div>
+
+<script src="inbox.js"></script>
+</body>
+</html>

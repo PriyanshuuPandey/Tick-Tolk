@@ -1,0 +1,815 @@
+/* Global Styles */
+:root {
+    --primary: #ff0050;
+    --secondary: #00a2ff;
+    --dark: #121212;
+    --light-dark: #242424;
+    --light: #f5f5f5;
+    --gray: #888;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    background-color: var(--dark);
+    color: var(--light);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Auth Pages */
+  .auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--dark), var(--light-dark));
+  }
+  
+  .auth-logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: var(--primary);
+  }
+  
+  .auth-card {
+    background-color: var(--light-dark);
+    padding: 2rem;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .auth-tabs {
+    display: flex;
+    margin-bottom: 1.5rem;
+  }
+  
+  .auth-tab {
+    flex: 1;
+    text-align: center;
+    padding: 0.8rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .auth-tab.active {
+    border-bottom: 2px solid var(--primary);
+    font-weight: bold;
+  }
+  
+  .auth-form .form-group {
+    margin-bottom: 1.2rem;
+  }
+  
+  .auth-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .auth-form input {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid var(--gray);
+    background-color: var(--dark);
+    color: var(--light);
+  }
+  
+  .auth-form button {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--primary);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  
+  .social-login {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  
+  .social-login p {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dark);
+    cursor: pointer;
+  }
+  
+  /* Main App Layout */
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--light-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+  }
+  
+  .search-bar {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 1rem;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 20px;
+    border: none;
+    background-color: var(--dark);
+    color: var(--light);
+  }
+  
+  .user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--gray);
+    cursor: pointer;
+  }
+  
+  .main-content {
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+  /* Video Feed */
+  .video-feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  
+  .video-card {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .video-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background-color: #000;
+  }
+  
+  .video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .video-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  }
+  
+  .video-user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .video-user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--gray);
+    margin-right: 0.5rem;
+  }
+  
+  .video-username {
+    font-weight: bold;
+  }
+  
+  .video-caption {
+    margin-bottom: 0.5rem;
+  }
+  
+  .video-stats {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .video-stat {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+  
+  .video-stat i {
+    margin-right: 0.3rem;
+  }
+  
+  /* Bottom Navigation */
+  .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.8rem 0;
+    background-color: var(--light-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+   
+  .nav-item i {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .nav-item.active {
+    color: var(--primary);
+  }
+  
+  /* Discover Page */
+  .discover-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  
+  .discover-item {
+    aspect-ratio: 1/1;
+    background-color: var(--light-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .discover-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .discover-item .stats {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+  
+  /* Record Page */
+  .record-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .camera-preview {
+    flex: 1;
+    background-color: #000;
+    position: relative;
+  }
+  
+  .camera-controls {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background-color: var(--light-dark);
+  }
+  
+  .record-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    border: 4px solid white;
+    cursor: pointer;
+  }
+  
+  .record-options {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    background-color: var(--light-dark);
+  }
+  
+  .record-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+  
+  /* Profile Page */
+  .profile-header {
+    display: flex;
+    padding: 1.5rem;
+    align-items: center;
+  }
+  
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--gray);
+    margin-right: 1.5rem;
+  }
+  
+  .profile-stats {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .profile-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-stat-value {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  
+  .profile-stat-label {
+    font-size: 0.8rem;
+    color: var(--gray);
+  }
+  
+  .profile-bio {
+    padding: 0 1.5rem 1.5rem;
+  }
+  
+  .profile-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .profile-tab {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .profile-tab.active {
+    border-bottom: 2px solid var(--primary);
+    font-weight: bold;
+  }
+  
+  .profile-posts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  
+  .profile-post {
+    aspect-ratio: 1/1;
+    background-color: var(--light-dark);
+    position: relative;
+  }
+  
+  .profile-post img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Edit Profile */
+  .edit-profile-form {
+    padding: 1.5rem;
+  }
+  
+  .edit-profile-form .form-group {
+    margin-bottom: 1.2rem;
+  }
+  
+  .edit-profile-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .edit-profile-form input,
+  .edit-profile-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid var(--gray);
+    background-color: var(--dark);
+    color: var(--light);
+  }
+  
+  .edit-profile-form textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .save-btn {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--primary);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  /* Live Streaming Grid */
+  .live-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .live-card {
+    background-color: var(--light-dark);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .live-thumbnail {
+    position: relative;
+    aspect-ratio: 9/16;
+    background-color: #000;
+  }
+  
+  .live-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--primary);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+  
+  .live-viewers {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+  
+  .live-info {
+    padding: 0.8rem;
+    display: flex;
+  }
+  
+  .live-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--gray);
+    margin-right: 0.8rem;
+  }
+  
+  .live-details {
+    flex: 1;
+  }
+  
+  .live-username {
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  
+  .live-title {
+    font-size: 0.8rem;
+    color: var(--gray);
+  }
+  
+  /* Streaming Page */
+  .stream-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .stream-video {
+    flex: 1;
+    background-color: #000;
+    position: relative;
+  }
+  
+  .stream-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .stream-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  }
+  
+  .stream-user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .stream-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--gray);
+    margin-right: 0.8rem;
+  }
+  
+  .stream-details {
+    flex: 1;
+  }
+  
+  .stream-username {
+    font-weight: bold;
+  }
+  
+  .stream-title {
+    font-size: 0.9rem;
+  }
+  
+  .stream-stats {
+    display: flex;
+    align-items: center;
+    margin-top: 0.3rem;
+  }
+  
+  .stream-viewers {
+    font-size: 0.8rem;
+    margin-right: 1rem;
+  }
+  
+  .stream-follow-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+  
+  .stream-chat {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 0.8rem;
+    max-height: 60%;
+    overflow-y: auto;
+  }
+  
+  .chat-message {
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .chat-user {
+    font-weight: bold;
+    margin-right: 0.3rem;
+  }
+  
+  .stream-actions {
+    position: absolute;
+    right: 10px;
+    bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stream-action {
+    margin-bottom: 1rem;
+    text-align: center;
+    color: white;
+    font-size: 0.8rem;
+  }
+  
+  .stream-action i {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .gift-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .stream-comment {
+    padding: 0.8rem;
+    background-color: var(--light-dark);
+    display: flex;
+  }
+  
+  .comment-input {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border-radius: 20px;
+    border: none;
+    background-color: var(--dark);
+    color: var(--light);
+    margin-right: 0.8rem;
+  }
+  
+  .send-comment-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  /* Coins Purchase Page */
+  .coins-container {
+    padding: 1.5rem;
+  }
+  
+  .coins-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .coins-balance {
+    background-color: var(--light-dark);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .coins-balance-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin: 0.5rem 0;
+  }
+  
+  .coins-packages {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .coin-package {
+    background-color: var(--light-dark);
+    border-radius: 10px;
+    padding: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  
+  .coin-package:hover {
+    border-color: var(--primary);
+  }
+  
+  .coin-amount {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin: 0.5rem 0;
+  }
+  
+  .coin-price {
+    font-size: 1.1rem;
+  }
+  
+  .coin-best {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.3rem 0;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .payment-methods {
+    margin-top: 2rem;
+  }
+  
+  .payment-methods h3 {
+    margin-bottom: 1rem;
+  }
+  
+  .payment-option {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    background-color: var(--light-dark);
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+  }
+  
+  .payment-option i {
+    margin-right: 0.8rem;
+    font-size: 1.5rem;
+  }
+  
+  .payment-option.active {
+    border: 2px solid var(--primary);
+  }
+  
+  .purchase-btn {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--primary);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1.5rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .live-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .coins-packages {
+      grid-template-columns: 1fr;
+    }
+    
+    .stream-chat {
+      width: 250px;
+    }
+  }
