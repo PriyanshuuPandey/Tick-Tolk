@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile - Shorts App</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Additional styles for normal user profile */
+    .profile-actions {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    
+    .profile-btn {
+      flex: 1;
+      padding: 0.6rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .follow-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+    }
+    
+    .message-btn {
+      background-color: var(--light-dark);
+      color: var(--light);
+      border: none;
+    }
+    
+    .profile-tabs {
+      display: flex;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .profile-tab {
+      flex: 1;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      position: relative;
+    }
+    
+    .profile-tab.active {
+      font-weight: bold;
+    }
+    
+    .profile-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 25%;
+      right: 25%;
+      height: 2px;
+      background-color: var(--primary);
+    }
+    
+    .saved-collections {
+      padding: 1rem;
+    }
+    
+    .collection-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .collection-title {
+      font-weight: bold;
+    }
+    
+    .see-all {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+    
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+    }
+    
+    .collection-item {
+      aspect-ratio: 1/1;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .collection-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .collection-name {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.5rem;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      font-size: 0.8rem;
+    }
+    
+    .new-collection {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--light-dark);
+    }
+    
+    .new-collection i {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .liked-posts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    
+    .liked-post {
+      aspect-ratio: 1/1;
+      background-color: var(--light-dark);
+      position: relative;
+    }
+    
+    .liked-post img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <header class="header">
+      <div style="display:flex;align-items:center;">
+        <a href="home.html" style="margin-right:1rem;">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="logo">User Profile</div>
+      </div>
+      <div class="user-avatar"></div>
+    </header>
+    
+    <main class="main-content">
+      <div class="profile-header">
+        <div class="profile-avatar"></div>
+        <div class="profile-stats">
+          <div class="profile-stat">
+            <div class="profile-stat-value">124</div>
+            <div class="profile-stat-label">Posts</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-value">856</div>
+            <div class="profile-stat-label">Followers</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-value">245</div>
+            <div class="profile-stat-label">Following</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="profile-bio">
+        <h3>@regularuser</h3>
+        <p>Short video enthusiast | Travel lover | Foodie</p>
+        <p>📍 Bangalore, India</p>
+        
+        <div class="profile-actions">
+          <button class="profile-btn message-btn">
+            <i class="fas fa-envelope"></i> Message
+          </button>
+          <button class="profile-btn follow-btn">
+            <i class="fas fa-user-plus"></i> Follow
+          </button>
+        </div>
+      </div>
+      
+      <div class="saved-collections">
+        <div class="collection-header">
+          <div class="collection-title">Saved Collections</div>
+          <a href="#" class="see-all">See All</a>
+        </div>
+        
+        <div class="collection-grid">
+          <div class="collection-item">
+            <img src="https://via.placeholder.com/300" alt="Travel">
+            <div class="collection-name">Travel</div>
+          </div>
+          <div class="collection-item">
+            <img src="https://via.placeholder.com/300" alt="Food">
+            <div class="collection-name">Food</div>
+          </div>
+          <div class="collection-item new-collection">
+            <i class="fas fa-plus"></i>
+            <div class="collection-name">New</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="profile-tabs">
+        <div class="profile-tab active">
+          <i class="fas fa-th"></i> Posts
+        </div>
+        <div class="profile-tab">
+          <i class="fas fa-bookmark"></i> Saved
+        </div>
+        <div class="profile-tab">
+          <i class="fas fa-heart"></i> Liked
+        </div>
+      </div>
+      
+      <!-- Posts Tab Content -->
+      <div id="posts-tab">
+        <div class="profile-posts">
+          <div class="profile-post">
+            <img src="https://via.placeholder.com/300" alt="Post">
+          </div>
+          <div class="profile-post">
+            <img src="https://via.placeholder.com/300" alt="Post">
+          </div>
+          <div class="profile-post">
+            <img src="https://via.placeholder.com/300" alt="Post">
+          </div>
+          <div class="profile-post">
+            <img src="https://via.placeholder.com/300" alt="Post">
+          </div>
+          <div class="profile-post">
+            <img src="https://via.placeholder.com/300" alt="Post">
+          </div>
+          <div class="profile-post">
+            <img src="https://via.placeholder.com/300" alt="Post">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Saved Tab Content (Hidden by default) -->
+      <div id="saved-tab" style="display:none;">
+        <div class="liked-posts">
+          <div class="liked-post">
+            <img src="https://via.placeholder.com/300" alt="Saved post">
+          </div>
+          <div class="liked-post">
+            <img src="https://via.placeholder.com/300" alt="Saved post">
+          </div>
+          <div class="liked-post">
+            <img src="https://via.placeholder.com/300" alt="Saved post">
+          </div>
+          <div class="liked-post">
+            <img src="https://via.placeholder.com/300" alt="Saved post">
+          </div>
+          <div class="liked-post">
+            <img src="https://via.placeholder.com/300" alt="Saved post">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Liked Tab Content (Hidden by default) -->
+      <div id="liked-tab" style="display:none;">
+        <div class="liked-posts">
+          <div class="liked-post">
+            <img src="https://via.placeholder.com/300" alt="Liked post">
+          </div>
+          <div class="liked-post">
+            <img src="https://via.placeholder.com/300" alt="Liked post">
+          </div>
+          <div class="liked-post">
+            <img src="https://via.placeholder.com/300" alt="Liked post">
+          </div>
+          <div class="liked-post">
+            <img src="https://via.placeholder.com/300" alt="Liked post">
+          </div>
+          <div class="liked-post">
+            <img src="https://via.placeholder.com/300" alt="Liked post">
+          </div>
+          <div class="liked-post">
+            <img src="https://via.placeholder.com/300" alt="Liked post">
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <nav class="bottom-nav">
+      <a href="home.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="discover.html" class="nav-item">
+        <i class="fas fa-compass"></i>
+        <span>Discover</span>
+      </a>
+      <a href="record.html" class="nav-item">
+        <i class="fas fa-plus-circle"></i>
+        <span>Record</span>
+      </a>
+      <a href="inbox.html" class="nav-item">
+        <i class="fas fa-inbox"></i>
+        <span>Inbox</span>
+      </a>
+      <a href="profile.html" class="nav-item active">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </div>
+
+  <script>
+    // Tab switching functionality
+    const tabs = document.querySelectorAll('.profile-tab');
+    const tabContents = {
+      'posts-tab': document.getElementById('posts-tab'),
+      'saved-tab': document.getElementById('saved-tab'),
+      'liked-tab': document.getElementById('liked-tab')
+    };
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs
+        tabs.forEach(t => t.classList.remove('active'));
+        // Add active class to clicked tab
+        tab.classList.add('active');
+        
+        // Hide all tab contents
+        Object.values(tabContents).forEach(content => {
+          content.style.display = 'none';
+        });
+        
+        // Show the selected tab content
+        if (tab.innerHTML.includes('Posts')) {
+          tabContents['posts-tab'].style.display = 'block';
+        } else if (tab.innerHTML.includes('Saved')) {
+          tabContents['saved-tab'].style.display = 'block';
+        } else if (tab.innerHTML.includes('Liked')) {
+          tabContents['liked-tab'].style.display = 'block';
+        }
+      });
+    });
+    
+    // Follow button toggle
+    const followBtn = document.querySelector('.follow-btn');
+    if (followBtn) {
+      followBtn.addEventListener('click', function() {
+        if (this.innerHTML.includes('Follow')) {
+          this.innerHTML = '<i class="fas fa-check"></i> Following';
+        } else {
+          this.innerHTML = '<i class="fas fa-user-plus"></i> Follow';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

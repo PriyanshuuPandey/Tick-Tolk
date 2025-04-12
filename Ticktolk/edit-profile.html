@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="header">
+      <div style="display:flex;align-items:center;">
+        <a href="creatorprofile.html" style="margin-right:1rem;">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="logo">Edit Profile</div>
+      </div>
+    </header>
+    
+    <main class="main-content">
+      <div class="edit-profile-form">
+        <div class="form-group" style="text-align:center;">
+          <div style="width:100px;height:100px;border-radius:50%;background-color:#888;margin:0 auto 1rem;position:relative;">
+            <div style="position:absolute;bottom:0;right:0;background-color:var(--primary);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-camera" style="font-size:0.8rem;"></i>
+            </div>
+          </div>
+          <button style="background:none;border:none;color:var(--primary);font-weight:bold;cursor:pointer;">
+            Change Profile Photo
+          </button>
+        </div>
+        
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" value="current_username">
+        </div>
+        
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" value="Your Name">
+        </div>
+        
+        <div class="form-group">
+          <label for="bio">Bio</label>
+          <textarea id="bio">Content creator | Digital artist | Short video specialist</textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="website">Website</label>
+          <input type="text" id="website" placeholder="Add website">
+        </div>
+        
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" id="location" value="New York, USA">
+        </div>
+        
+        <button class="save-btn">Save Changes</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

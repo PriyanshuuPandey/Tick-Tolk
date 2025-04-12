@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.top-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    z-index: 10;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.search-icon {
+    font-size: 18px;
+}
+
+.video-feed {
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+.video-item {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    scroll-snap-align: start;
+    overflow: hidden;
+}
+
+.video-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-info {
+    position: absolute;
+    bottom: 80px;
+    left: 10px;
+    max-width: 70%;
+}
+
+.username {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.description {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.song {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+
+.song i {
+    margin-right: 5px;
+}
+
+.sidebar-actions {
+    position: fixed;
+    right: 10px;
+    bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.action-icon {
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.action-count {
+    font-size: 12px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin-bottom: 5px;
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: #000;
+    z-index: 10;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 10px;
+}
+
+.nav-item i {
+    font-size: 22px;
+    margin-bottom: 3px;
+}
+
+.nav-item.active {
+    color: #fe2c55;
+}
+
+</style>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <div class="logo">TikTok</div>
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+
+        <!-- Main Feed -->
+        <div class="video-feed">
+            <!-- Video items will be added here by JavaScript -->
+        </div>
+
+        <!-- Right Sidebar (Actions) -->
+        <div class="sidebar-actions">
+            <!-- Actions will be added here by JavaScript -->
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-compass"></i>
+                <span>Discover</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-plus-square"></i>
+                <span>Create</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-inbox"></i>
+                <span>Inbox</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Me</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
